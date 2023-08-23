@@ -59,8 +59,5 @@ Click on "Select File" to choose where to save the file and give it a name. Pres
 - Run class "graph-visualizer.py".
 
 ## Output
-![Screenshot 2023-08-22 194024](https://github.com/morkev/jmars-3d-visualizer/assets/83437383/c6bee7a7-05c7-4f5f-9aa7-6167e1a19127)
-> Ahuna Mons in Ceres represented by NASA/JPL-Caltech
-
 ![Screenshot 2023-08-22 193436](https://github.com/morkev/jmars-3d-visualizer/assets/83437383/cb63fc43-7999-43af-bfed-597cd581a4f5)
 > Ahuna Mons in Ceres represented by JMARS 3D Visualizer
