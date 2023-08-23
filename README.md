@@ -49,13 +49,11 @@ e.g., "if you are working with a crater such as Occator in
 Ceres, then you shall select the Occator crater dataset"
 ```
 
-Click on "Select File" to choose where to save the file and give it a name. Press the "save" button to complete this operation.
-
-Congratulations, you now have the dataset for the selected area.
+Click on "Select File" to choose where to save the file and give it a name. Press the "save" button to complete this operation. Congratulations, you now have the dataset for the selected area.
 
 ## Usage
 - Install all libraries and dependencies.
-- Add your dataset to the "Resources" folder.
-- In line TBD of class "TBD", instantiate the name of the dataset you just added.
-  - Should look like this: "occator.csv"
-- Run class "TBD".
+- Add your dataset to the "resources" folder.
+- In line 6 of class "graph-visualizer.py", instantiate the name of the dataset you just added.
+  - Should look like this: filename = "occator.csv"
+- Run class "graph-visualizer.py".
