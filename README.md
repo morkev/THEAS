@@ -55,7 +55,7 @@ Click on "Select File" to choose where to save the file and give it a name. Pres
 - Install all libraries and dependencies.
 - Add your dataset to the "datasets" folder.
 - In line 6 of class "graph-visualizer.py", instantiate the name of the dataset you just added.
-  - Should look like this: filename = "datasets/occator.csv"
+  - Should look like this: filename = "folder_containing_datasets/name_of_dataset.csv"
 - Run class "graph-visualizer.py".
 
 ## Output
