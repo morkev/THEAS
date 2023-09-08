@@ -2,7 +2,7 @@
 
 This software visualizes any surface in the Heliocentric System as long as the dataset has the required parameters. Users can effortlessly navigate and manipulate a 3D graph of any specific region of their interest, zoom in to observe minute details, rotate the view to gain new perspectives and get more insight about the latitude, longitude, elevation and if needed, they can generate the shortest path based on terrain or slope elevation. Datasets were provided by NASA Java Mission-planning and Analysis for Remote Sensing (JMARS).
 
-<b>Developed by</b>: Kevin Mora (student researcher at NASA L'SPACE).
+<b>Developed by</b>: Kevin Mora.
 
 ## Installation and Dependencies
 ```python
