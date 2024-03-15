@@ -38,7 +38,7 @@ Go to: Polygon Functions
 Click on: Export Pixels Data for Polygon
 ```
 
-A little window called "Pixel Data CSV Export" will appear. Now do the following:
+A little window called `Pixel Data CSV Export` will appear. Now do the following:
 ```r
 Uncheck :: Pixel ID
 Check :: Latitude
@@ -56,10 +56,10 @@ Click on `Select File` to choose where to save the file and give it a name. Pres
 
 ## Usage
 - Install all the libraries and dependencies.
-- Add your dataset to the "datasets" folder.
-- In line 6 of class "graph-visualizer.py", instantiate the name of the dataset you just added.
-  - Should look like this: filename = "datasets/name_of_dataset.csv"
-- Run class "graph-visualizer.py".
+- Add your dataset to the `datasets` folder.
+- In line 6 of class `graph-visualizer.py`, instantiate the name of the dataset you just added.
+  - Should look like this: `filename = "datasets/name_of_dataset.csv"`
+- Run the class `graph-visualizer.py`.
 
 ## Output
 ![Screenshot 2023-08-22 193436](https://github.com/morkev/jmars-3d-visualizer/assets/83437383/cb63fc43-7999-43af-bfed-597cd581a4f5)
