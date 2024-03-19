@@ -3,7 +3,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 
-filename = "resources/ahuna-mons.csv"
+filename = "datasets/celeste.csv"
 
 # Use NumPy arrays instead of Python lists
 latitude_list = np.array([])
