@@ -35,7 +35,6 @@ class PhysicsBody(object):
 
 
 class SpringLayout(object):
-    """docstring for SpringLayout"""
 
     def __init__(self, damping=0.3, verbose=False,
                  minEnergyThreshold=.00005, timestep=0.01, max_steps=200):
@@ -63,7 +62,6 @@ class SpringLayout(object):
                 d_norm = 1
 
             displacement = r - d_norm
-            # (1 if displacement > 0 else -1)
             f = (weight * self.stiffness) * displacement
             forcex = (dx / d_norm) * f * -.5
             forcey = (dy / d_norm) * f * -.5
@@ -156,10 +154,6 @@ class SpringLayout(object):
 
         if steps > self.max_steps:
             return True
-
-        # if avg_energy < self.last_energy:
-        #     if ((self.last_energy - avg_energy) < (self.last_energy*self.minEnergyThreshold) and steps > 2):
-        #         return True
 
         self.last_energy = avg_energy
 

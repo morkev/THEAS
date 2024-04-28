@@ -10,9 +10,7 @@ def circumfrence(poly):
 
 
 def clip(a, b):
-    """ return polygon of a-b
-    """
-    if len(a) == 3:  # triangle base case.
+    if len(a) == 3:
         return a
 
     pc = pyclipper.Pyclipper()
@@ -45,7 +43,6 @@ def union(polygon_list):
 
 
 def shoelace(point_list):
-    """ The shoelace algorithm for polgon area """
     area = 0.0
     n = len(point_list)
     for i in range(n):

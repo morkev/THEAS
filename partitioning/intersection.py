@@ -1,6 +1,7 @@
 from __future__ import division
 import math
 
+
 def angle_between(a, b):
     x1, y1 = a
     x2, y2 = b
@@ -36,18 +37,8 @@ def line_intersection(line1, line2):
     y = det(d, ydiff) / div
     return x, y
 
-
 def is_left(a, b, c):
-    """
-    Where a = line point 1; b = line point 2; c = point to check against.
-    If the formula is equal to 0, the points are colinear.
-    If the line is horizontal, then this returns true if the point is above the line.
-    """
     return (b[0] - a[0])*(c[1] - a[1]) > (b[1] - a[1])*(c[0] - a[0])
-
-# def colinear(a, b, c):
-#     print 'colinear', (b[0] - a[0])*(c[1] - a[1]) - (b[1] - a[1])*(c[0] - a[0])
-#     return near(0, (b[0] - a[0])*(c[1] - a[1]) - (b[1] - a[1])*(c[0] - a[0]), 200)
 
 def near(a, b, rtol=1e-5):
     return abs(a - b) < rtol
@@ -78,10 +69,6 @@ def outer_tangents(p1, r1, p2, r2):
     return ((start1, end1), (start2, end2))
 
 def rotate_point(origin, point, angle):
-    """
-    Rotate a point counterclockwise by a given angle around a given origin.
-    The angle should be given in radians.
-    """
     ox, oy = origin
     px, py = point
 

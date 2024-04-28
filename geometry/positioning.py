@@ -1,6 +1,3 @@
-"""
-Utilities for dictionaries of xy tuple values.
-"""
 from __future__ import print_function, division
 import random
 from collections import defaultdict

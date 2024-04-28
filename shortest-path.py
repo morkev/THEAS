@@ -3,83 +3,86 @@ import numpy as np
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 from scipy.spatial.distance import cdist
-from scipy.sparse import csr_matrix
-from scipy.sparse.csgraph import dijkstra
 
+# -----------------------------------------------------------------------------
+#
+# This class does not work as intended. The current path goes
+# across all the data points, instead of the nearest ones. The potential 
+# solution is to make a Voronoi grid, and then find the nearest, 
+# in order to quickly visualize the result with matplotlib.
+#
+# -----------------------------------------------------------------------------
 
-# Displays the shortest path between the top and bottom points
-# of a mountain range using Dijkstra's Algorithm.
+# -----------------------------------------------------------------------------
+#
+# Load data from CSV file and extract latitude, longitude, and altitude
+#
+# -----------------------------------------------------------------------------
+filename = "datasets/baby-twins.csv"
+data = np.loadtxt(filename, delimiter=',', skiprows=1)
+latitude_list = data[:, 0]
+longitude_list = data[:, 1]
+altitude_list = data[:, 2]
 
+# -----------------------------------------------------------------------------
+#
+# Calculate the pairwise distances between points using Euclidean distance
+#
+# -----------------------------------------------------------------------------
+distances = cdist(data[:, :2], data[:, :2], 'euclidean')
 
-filename = "resources/ahuna-mons.csv"
+# -----------------------------------------------------------------------------
+#
+# Initialize path starting from the first point (index 0) and visited set
+#
+# -----------------------------------------------------------------------------
+path = [0]
+current_index = 0
+visited = set([current_index])
 
-# Use NumPy arrays instead of Python lists
-latitude_list = np.array([])
-longitude_list = np.array([])
-altitude_list = np.array([])
+# -----------------------------------------------------------------------------
+#
+# Construct the path by finding the nearest unvisited point at each step
+#
+# -----------------------------------------------------------------------------
+while len(visited) < len(data):
+    # Ignore visited points by setting their distances to infinity
+    distances[current_index, list(visited)] = np.inf
+    nearest_index = np.argmin(distances[current_index])
+    if nearest_index in visited:
+        break
+    visited.add(nearest_index)
+    path.append(nearest_index)
+    current_index = nearest_index
 
-with open(filename, "r") as file:
-    csv_reader = csv.reader(file)
-
-    # Skip the header row if it exists
-    header = next(csv_reader, None)
-
-    # Use generator expressions to yield the values
-    latitude_list = np.fromiter(
-        (float(row[0]) for row in csv_reader), dtype=float)
-    file.seek(0)  # Reset the file pointer
-    next(csv_reader, None)  # Skip the header row again
-    longitude_list = np.fromiter(
-        (float(row[1]) for row in csv_reader), dtype=float)
-    file.seek(0)  # Reset the file pointer
-    next(csv_reader, None)  # Skip the header row again
-    altitude_list = np.fromiter(
-        (float(row[2]) for row in csv_reader), dtype=float)
-
-# Calculate the pairwise distances between points
-distances = cdist(
-    np.vstack((latitude_list, longitude_list)).T,
-    np.vstack((latitude_list, longitude_list)).T
-)
-
-# Convert distances to a sparse matrix for efficiency
-graph = csr_matrix(distances)
-
-# Find the shortest path using Dijkstra's algorithm
-start_index = 0  # Index of the top point
-end_index = len(latitude_list) - 1  # Index of the bottom point
-distances, predecessors = dijkstra(
-    graph, indices=start_index, return_predecessors=True)
-
-# Reconstruct the shortest path
-path = [end_index]
-while path[-1] != start_index:
-    path.append(predecessors[path[-1]])
-
-path.reverse()
+# -----------------------------------------------------------------------------
+#
+# Extract the coordinates of the shortest path and create the 3D plot
+#
+# -----------------------------------------------------------------------------
 shortest_path_latitude = latitude_list[path]
 shortest_path_longitude = longitude_list[path]
 shortest_path_altitude = altitude_list[path]
-
-# Create the 3D plot with larger size
 fig = plt.figure(figsize=(10, 8))
 ax = fig.add_subplot(111, projection='3d')
 
-# Plot the coordinates with gradient effect based on altitude
-sc = ax.scatter(latitude_list, longitude_list, altitude_list,
-                c=altitude_list, cmap='viridis')
+# -----------------------------------------------------------------------------
+#
+# Plot the points and the path 
+#
+# -----------------------------------------------------------------------------
+sc = ax.scatter(latitude_list, longitude_list, altitude_list, c=altitude_list, cmap='viridis')
+ax.plot(shortest_path_latitude, shortest_path_longitude, shortest_path_altitude, 'r-', label='Path')
 
-# Plot the shortest path in red
-ax.plot(shortest_path_latitude, shortest_path_longitude,
-        shortest_path_altitude, 'r')
-
-# Set labels for each axis
+# -----------------------------------------------------------------------------
+#
+# Set axis labels, and add a color bar and legend
+#
+# -----------------------------------------------------------------------------
 ax.set_xlabel('Latitude')
 ax.set_ylabel('Longitude')
 ax.set_zlabel('Altitude')
+fig.colorbar(sc, pad=0.15)
+ax.legend()
 
-# Add a colorbar and adjust its position
-cbar = fig.colorbar(sc, pad=0.15)  # Adjust the pad value as needed
-
-# Show the plot
 plt.show()

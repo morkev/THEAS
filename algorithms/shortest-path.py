@@ -1,3 +1,7 @@
+# -----------------------------------------------------------------------------
+#
+# NOTE: This was taken from the NetworkX library, as defined below:
+#
 #    Copyright (C) 2004-2016 by
 #    Aric Hagberg <hagberg@lanl.gov>
 #    Dan Schult <dschult@colgate.edu>
@@ -12,6 +16,8 @@
 #
 # This is a fantastic implementation of the Dijkstra's
 # algorithm, so there's no need to rebuild the wheel.
+#
+# -----------------------------------------------------------------------------
 """
 Shortest path algorithms for weighed graphs.
 """

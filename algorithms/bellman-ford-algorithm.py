@@ -3,34 +3,43 @@ import numpy as np
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 
-filename = "resources/ahuna-mons.csv"
+filename = "datasets/ahuna-mons.csv"
 
-# Use NumPy arrays instead of Python lists
+# -----------------------------------------------------------------------------
+#
+# Use NumPy arrays instead of Python lists for the coordinates 
+#
+# -----------------------------------------------------------------------------
 latitude_list = np.array([])
 longitude_list = np.array([])
 altitude_list = np.array([])
 
+# -----------------------------------------------------------------------------
+#
+# Read the CSV file and store the latitude, longitude, and altitude values
+#
+# -----------------------------------------------------------------------------
 with open(filename, "r") as file:
     csv_reader = csv.reader(file)
-
-    # Skip the header row if it exists
     header = next(csv_reader, None)
-
-    # Use generator expressions to yield the values
+    
     latitude_list = np.fromiter(
         (float(row[0]) for row in csv_reader), dtype=float)
-    file.seek(0)  # Reset the file pointer
-    next(csv_reader, None)  # Skip the header row again
+    file.seek(0)
+    next(csv_reader, None)
     longitude_list = np.fromiter(
         (float(row[1]) for row in csv_reader), dtype=float)
-    file.seek(0)  # Reset the file pointer
-    next(csv_reader, None)  # Skip the header row again
+    file.seek(0)
+    next(csv_reader, None)
     altitude_list = np.fromiter(
         (float(row[2]) for row in csv_reader), dtype=float)
 
+
+# -----------------------------------------------------------------------------
+#
 # Define the Bellman-Ford algorithm function with Delta stepping optimization
-
-
+#
+# -----------------------------------------------------------------------------
 def bellman_ford_delta(graph, start, delta):
     num_nodes = len(graph)
     distance = np.full(num_nodes, np.inf)
@@ -57,12 +66,19 @@ def bellman_ford_delta(graph, start, delta):
 
     return distance
 
-
+# -----------------------------------------------------------------------------
+#
 # Create the graph based on the latitude, longitude, and altitude lists
+#
+# -----------------------------------------------------------------------------
 num_nodes = len(latitude_list)
 graph = np.zeros((num_nodes, num_nodes))
 
-# This function is the purest definition of garbage
+# -----------------------------------------------------------------------------
+#
+# This function is the purest definition of garbage code
+#
+# -----------------------------------------------------------------------------
 for i in range(num_nodes):
     for j in range(num_nodes):
         if i != j:
@@ -72,34 +88,38 @@ for i in range(num_nodes):
                 (altitude_list[i] - altitude_list[j]) ** 2
             )
 
-# Choose the top node as the starting point (you can change this as needed)
+# -----------------------------------------------------------------------------
+#
+# Choose the top node as the starting point, and set the delta value. Then, run
+# run the Bellman-Ford algorithm with Delta stepping for the shortest distances
+#
+# -----------------------------------------------------------------------------
 start_node = 0
-# Set the delta value (adjust as needed)
 delta = 100
-
-# Run the Bellman-Ford algorithm with Delta stepping
 distances = bellman_ford_delta(graph, start_node, delta)
 
-# Print the shortest distances
 for i in range(num_nodes):
     print(
         f"Shortest distance from node {start_node} to node {i}: {distances[i]}")
 
-# Create the 3D plot with larger size
+# -----------------------------------------------------------------------------
+#
+# Create the 3D plot with larger size, and plot the coordinates with gradient effect based on altitude
+#
+# -----------------------------------------------------------------------------
 fig = plt.figure(figsize=(10, 8))
 ax = fig.add_subplot(111, projection='3d')
-
-# Plot the coordinates with gradient effect based on altitude
 sc = ax.scatter(latitude_list, longitude_list, altitude_list,
                 c=altitude_list, cmap='viridis')
 
-# Set labels for each axis
+# -----------------------------------------------------------------------------
+#
+# Set labels for each axis, and add a colorbar and adjust its position
+#
+# -----------------------------------------------------------------------------
 ax.set_xlabel('Latitude')
 ax.set_ylabel('Longitude')
 ax.set_zlabel('Altitude')
+cbar = fig.colorbar(sc, pad=0.15)
 
-# Add a colorbar and adjust its position
-cbar = fig.colorbar(sc, pad=0.15)  # Adjust the pad value as needed
-
-# Show the plot
 plt.show()
