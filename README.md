@@ -1,6 +1,6 @@
 # JMARS 3D Visualizer
 
-Visualizes any surface in the from NASA Java Mission-planning and Analysis for Remote Sensing (JMARS), as long as the dataset has the required LAMO parameters. Users can effortlessly navigate and manipulate the 3D graph of any specific region of their interest, zoom in to observe minute details, rotate the view and get more insight about the latitude, longitude, elevation and if needed, they can generate the shortest path based on the terrain or the slope elevation.
+Visualizes datasets from NASA Java Mission-planning and Analysis for Remote Sensing (JMARS). Current features include the ability to generate 3D graphs of DTM (LAMO) parameters, heatmaps based on the regolith temperature, thermal imaging representations of the surfaces, shortest paths, and top views of terrain elevation. The program contains error correction functions for missing data points.
 
 <b>Developed by</b>: Kevin Mora.
 
@@ -44,22 +44,19 @@ Uncheck :: Pixel ID
 Check :: Latitude
 Check :: Longitude
 
-Click now on "Add Source" and select the desired "Elevation" dataset for the body you are working with.
+Click now on "Add Source" and select the desired dataset for the body you are working with.
 
 Leave Sampling PPD with the default value.
-
-e.g., "if you are working with a crater such as Occator in
-Ceres, then you shall select the Occator crater dataset"
 ```
 
-Click on `Select File` to choose where to save the file and give it a name. Press the `Save` button to complete this operation. Congratulations, you now have the dataset for the selected area.
+Click on `Select File` to choose where to save the file and give it a name. Press the `Save` button to complete this operation, and delete the first line of the file. Congratulations, you now have the dataset for the selected area.
 
 ## Usage
 - Install all the libraries and dependencies.
 - Add your dataset to the `datasets` folder.
-- In line 6 of class `graph-visualizer.py`, instantiate the name of the dataset you just added.
-  - Should look like this: `filename = "datasets/name_of_dataset.csv"`
-- Run the class `graph-visualizer.py`.
+  - i.e.,: `filename = "datasets/name_of_dataset.csv"`
+- Run the desired class using `python class_name.py`.
+  - e.g.,:`python topographic-surface.py` gives us the result below.
 
 ## Output
 ![Screenshot 2023-08-22 193436](https://github.com/morkev/jmars-3d-visualizer/assets/83437383/cb63fc43-7999-43af-bfed-597cd581a4f5)
