@@ -1,8 +1,8 @@
 # Thermal and Elevation Analysis System (THEAS)
 
-Visualizes datasets from NASA Java Mission-planning and Analysis for Remote Sensing (JMARS). Current features include the ability to generate 3D graphs of DTM (LAMO) parameters, heatmaps based on the regolith temperature, thermal imaging representations of the surfaces, shortest paths, and top views of terrain elevation. The program contains error correction functions for missing data points.
+Visualizes datasets from NASA Java Mission-planning and Analysis for Remote Sensing (JMARS). Current features include the ability to generate 3D graphs of terrain elevation, heatmaps based on the regolith temperature, thermal imaging representations of the surfaces, shortest paths, and top views of the terrain. The program contains error correction functions for missing data points.
 
-<b>Developed by</b>: Kevin Mora.
+<b>Developed by</b>: Kevin Mora, intern at NASA Goddard Space Flight Center.
 
 ## Installation and Dependencies
 ```python
@@ -60,8 +60,7 @@ Click on `Select File` to choose where to save the file and give it a name. Pres
 
 ## Output
 ![Screenshot 2023-08-22 193436](https://github.com/morkev/jmars-3d-visualizer/assets/83437383/cb63fc43-7999-43af-bfed-597cd581a4f5)
-> Ahuna Mons in Ceres represented by JMARS 3D Visualizer
-
+> Ahuna Mons in Ceres represented by THEAS.
 
 ![collage](https://github.com/morkev/THEAS/assets/83437383/7de75411-bebb-4e08-bf92-d9ba8525cd2e)
 > Sample area from lunar terrain featured to display results of thermal imaging enhancement using an error correction algorithm (left). Initial imaging conditions are displayed on the right, highlighting the significant refinement achieved in the processed data.
